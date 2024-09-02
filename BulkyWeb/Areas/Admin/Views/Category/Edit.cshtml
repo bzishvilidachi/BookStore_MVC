@@ -1,0 +1,37 @@
+﻿@model Category
+
+<form method="post" class="shadow-lg p-4 rounded border">
+    <input asp-for="CategoryId" hidden />
+    <div class="container">
+        <div class="row pb-2">
+            <h2 class="text-primary">Edit Category</h2>
+            <hr />
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control shadow-sm rounded" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3 row p-1">
+            <label asp-for="DisplayOrder" class="form-label"></label>
+            <input asp-for="DisplayOrder" class="form-control shadow-sm rounded" />
+            <span asp-validation-for="DisplayOrder" class="text-danger"></span>
+        </div>
+        @* <div asp-validation-summary="All" class="text-danger"></div> *@
+        <div class="row">
+            <div class="col-6 col-md-3">
+                <button type="submit" class="btn btn-primary w-100 shadow-sm rounded">Update</button>
+            </div>
+            <div class="col-6 col-md-3">
+                <a asp-controller="Category" asp-action="Index" class="btn btn-outline-secondary w-100 border shadow-sm rounded">
+                    Back to List
+                </a>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

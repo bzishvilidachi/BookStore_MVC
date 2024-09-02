@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Product>
+
+<div class="container mt-5">
+    <!-- Header Section -->
+    <div class="row pb-5">
+        <div class="col-12 text-center">
+            <h1 class="display-4 text-primary">Welcome to Our Bookstore</h1>
+            <p class="lead text-secondary">Explore our wide collection of books from various genres and authors.</p>
+        </div>
+    </div>
+
+    <!-- Featured Products Section -->
+    <div class="row pb-3">
+        <div class="col-12 text-center mb-4">
+            <h2 class="h3 text-dark">Featured Books</h2>
+            <p class="text-muted">Handpicked collection just for you.</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        @foreach (var product in Model)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
+                <div class="card shadow-lg rounded overflow-hidden" style="width: 18rem;">
+                    <img src="@product.ImageUrl" class="card-img-top" style="height: 250px; object-fit: cover;" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title text-dark opacity-75 text-uppercase">@product.Title</h5>
+                        <p class="card-subtitle mb-2 text-warning">By <b>@product.Author</b></p>
+                        <div class="card-text">
+                            <p class="text-muted text-decoration-line-through">List Price: @product.ListPrice.ToString("c")</p>
+                            <p class="text-dark h5">Price: @product.Price100.ToString("c")</p>
+                        </div>
+                        <a asp-action="Details"
+                           asp-route-id="@product.Id"
+                        class="btn btn-outline-primary mt-2 rounded-pill px-4">View Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="row py-5 text-center">
+        <div class="col-12">
+            <h3 class="h4 text-secondary">Looking for more books?</h3>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-lg btn-outline-primary mt-3 px-5 rounded-5">Browse All Books</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/product.js"></script>
+}
