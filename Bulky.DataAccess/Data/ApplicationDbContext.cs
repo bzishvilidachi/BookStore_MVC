@@ -15,6 +15,12 @@ namespace Bulky.DataAccess.Data
 
 		public DbSet<Category> Categories { get; set; }
 		public DbSet<Product> Products { get; set; }
+		public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+		public DbSet<Company> Companies { get; set; }
+		public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+		public DbSet<ProductImage> ProductImages { get; set; }
+		public DbSet<OrderHeader> OrderHeaders { get; set; }
+		public DbSet<OrderDetail> OrderDetails { get; set; }
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
@@ -29,6 +35,33 @@ namespace Bulky.DataAccess.Data
 
 			);
 
+			modelBuilder.Entity<Company>().HasData(
+			new Company { Id = 1, Name = "Tech Solution", StreetAddress = "123 Tech St", City = "Tech City", PostalCode = "2231", State = "IL", PhoneNumber = "1111111111" },
+
+			new Company
+			{
+				Id = 2,
+				Name = "Eco Innovators",
+				StreetAddress = "456 Green Blvd",
+				City = "Greenfield",
+				PostalCode = "98765",
+				State = "CA",
+				PhoneNumber = "2222222222"
+			},
+
+			new Company
+			{
+				Id = 3,
+				Name = "Global Ventures",
+				StreetAddress = "789 Enterprise Ave",
+				City = "Business Town",
+				PostalCode = "54321",
+				State = "NY",
+				PhoneNumber = "3333333333"
+			}
+
+		) ;
+
 			modelBuilder.Entity<Product>().HasData(
 				new Product
 				{
@@ -41,8 +74,7 @@ namespace Bulky.DataAccess.Data
 					Price = 90,
 					Price50 = 85,
 					Price100 = 80,
-					CategoryId = 1,
-					ImageUrl= ""
+					CategoryId = 1
 				},
 				new Product
 				{
@@ -55,8 +87,7 @@ namespace Bulky.DataAccess.Data
 					Price = 30,
 					Price50 = 25,
 					Price100 = 20,
-					CategoryId = 2,
-					ImageUrl = ""
+					CategoryId = 2
 				},
 				new Product
 				{
@@ -69,8 +100,7 @@ namespace Bulky.DataAccess.Data
 					Price = 50,
 					Price50 = 40,
 					Price100 = 35, 
-					CategoryId = 3,
-					ImageUrl = ""
+					CategoryId = 3
 				},
 				new Product
 				{
@@ -83,8 +113,7 @@ namespace Bulky.DataAccess.Data
 					Price = 65,
 					Price50 = 60,
 					Price100 = 55,
-					CategoryId = 3,
-					ImageUrl = ""
+					CategoryId = 3
 				}, 
 				new Product
 				{
@@ -97,8 +126,7 @@ namespace Bulky.DataAccess.Data
 					Price = 27,
 					Price50 = 25,
 					Price100 = 20,
-					CategoryId = 1,
-					ImageUrl = ""
+					CategoryId = 1
 				},
 				new Product
 				{
@@ -111,8 +139,7 @@ namespace Bulky.DataAccess.Data
 					Price = 23,
 					Price50 = 22,
 					Price100 = 20,
-					CategoryId = 2,
-					ImageUrl = ""
+					CategoryId = 2
 				}
 				);
 

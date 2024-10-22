@@ -11,7 +11,7 @@
 				</div>
 
 				<div class="mb-3 row">
-					<label asp-for="Product.Title" class="form-label"></label>
+					<label asp-for="Product.Title" class="form-label">Product Name</label>
 					<input asp-for="Product.Title" class="form-control bg-white shadow-sm rounded" />
 					<span asp-validation-for="Product.Title" class="text-danger"></span>
 				</div>
@@ -52,8 +52,8 @@
 					<span asp-validation-for="Product.Price100" class="text-danger"></span>
 				</div>
 				<div class="mb-3 row">
-					<label asp-for="Product.ImageUrl" class="form-label"></label>
-					<input type="file" name="file" class="form-control bg-white shadow-sm rounded" />
+					<label asp-for="Product.ProductImages" class="form-label"></label>
+					<input type="file" name="files" class="form-control bg-white shadow-sm rounded" multiple/>
 
 				</div>
 				<div class="mb-3 row">
@@ -89,8 +89,22 @@
 
 		</div>
 		<div class="col-2">
-			<img src="@Model.Product.ImageUrl" width="100%"
-			   style="border-radius:5px; border:1px solid #bbb9b9" />
+			@if (Model.Product.ProductImages != null)
+			{
+				foreach(var image in Model.Product.ProductImages)
+				{
+
+					<div class="image-container">
+						<img src="@image.ImageUrl" width="100%"
+							 style="border-radius:5px; border:1px solid #bbb9b9" />
+						<a asp-action="DeleteImage" class="delete-button" asp-route-imageId="@image.Id">
+							<i class="bi bi-trash-fill"></i>
+							<span class="button-text">Delete</span> <!-- Text that will fade in and out -->
+						</a>
+					</div>
+				}
+			}
+			
 		</div>
 	</div>
 

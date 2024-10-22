@@ -20,3 +20,104 @@ html {
 body {
   margin-bottom: 60px;
 }
+.dropdown-menu {
+    background-color: #f8f9fa; 
+    border: 1px solid #dee2e6; 
+}
+
+.dropdown-item {
+    color: #495057; 
+    font-size: 1rem; 
+    transition: background-color 0.2s ease; 
+}
+
+ .dropdown-item:hover {
+  background-color: #e9ecef;
+ }
+.dropdown-divider {
+    border-top: 1px solid #dee2e6; 
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+    .image-container img {
+        transition: filter 0.4s ease-in-out; 
+    }
+
+.delete-button {
+    position: absolute;
+    bottom: -40px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 0, 0, 0.8); 
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 8px 12px; 
+    font-size: 14px;
+    cursor: pointer;
+    transition: bottom 0.4s ease-in-out, width 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    width: 40px;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+    .delete-button .button-text {
+        opacity: 0;
+        transition: opacity 0.0s ease-in-out; 
+        margin-left: 5px;
+    }
+
+    .delete-button:hover {
+        background-color: rgba(255, 0, 0, 1); 
+    }
+
+.image-container:hover .delete-button {
+    bottom: 10px; 
+    width: auto; 
+}
+
+    .image-container:hover .delete-button .button-text {
+        opacity: 1; 
+        transition-delay: 0.2s; 
+    }
+
+.image-container:hover img {
+    filter: blur(1px);
+}
+
+
+
+.product-card {
+    transition: transform 0.3s ease; /* Smooth transition for the entire card */
+    position: relative; /* Necessary for positioning child elements */
+}
+
+.product-card:hover {
+    transform: translateY(-10px); /* Lift the entire card */
+}
+
+.card-body {
+    transition: transform 0.3s ease; /* Smooth transition for card body */
+}
+
+.product-card:hover .card-body {
+    transform: translateY(-20px); /* Move the entire card body up */
+}
+
+.view-details {
+    transition: opacity 0.3s ease; /* Smooth transition for visibility */
+    opacity: 0; /* Initially hidden */
+    margin-top: 10px; /* Ensures space between text and button */
+}
+
+.product-card:hover .view-details {
+    opacity: 1; /* Make the button visible on hover */
+}
+

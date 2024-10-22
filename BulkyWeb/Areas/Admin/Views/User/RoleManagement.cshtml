@@ -1,0 +1,76 @@
+﻿@model UserVM
+
+<form  asp-action="UpdateRole" method="post" class="shadow-lg p-4 rounded border bg-light">
+	<input asp-for="ApplicationUser.Id" hidden/>
+	<div class="container">
+		<div class="row pb-2">
+			<h2 class="text-primary">Update Role</h2>
+			<hr />
+		</div>
+
+		@if (Model.ApplicationUser.Name == null)
+		{
+			<div class="mb-3 row">
+			<label asp-for="ApplicationUser.Name"  class="form-label"></label>
+			<input asp-for="ApplicationUser.Name"  class="form-control bg-white shadow-sm rounded" />
+				<span asp-validation-for="ApplicationUser.Name" class="text-danger"></span>
+			</div>
+		}else
+		{
+			<div class="mb-3 row">
+				<label asp-for="ApplicationUser.Name" class="form-label"></label>
+				<input asp-for="ApplicationUser.Name" readonly class="form-control bg-white shadow-sm rounded" />
+
+			</div>
+		}
+
+		<div class="mb-3 row">
+			<select asp-for="ApplicationUser.Role" asp-items="@Model.RoleList" class="form-select"></select>
+
+		</div>   
+		@{
+			var companyVisible = "display:none;";
+		}
+		@if (Model.ApplicationUser.Role == SD.Role_Company)
+		{
+			companyVisible = "display:block;";
+		}
+		<div class="mb-3 row">
+			<select asp-for="ApplicationUser.CompanyId" style="@companyVisible" asp-items="Model.CompanyList" class="form-select"></select>
+
+		</div>
+		@* <div asp-validation-summary="All" class="text-danger"></div> *@
+		<div class="row">
+			<div class="col-6 col-md-3">
+				<button type="submit" class="btn btn-primary w-100 form-control shadow-sm rounded">Update</button>
+			</div>
+		 
+			<div class="col-6 col-md-3">
+				<a asp-action="Index" class="btn btn-outline-secondary w-100 border shadow-sm rounded">
+					Back to List
+				</a>
+			</div>
+		</div>
+	</div>
+</form>
+
+@section Scripts {
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+
+	<script>
+		$(document).ready(function () {
+			$('#ApplicationUser_Role').change(function () {
+				var selection = $('#ApplicationUser_Role option:selected').text();
+				if (selection == 'Company') {
+					$('#ApplicationUser_CompanyId').show();
+					//$('#roleContainer').removeClass('col-md-12').addClass('col-md-6');
+				} else {
+					$('#ApplicationUser_CompanyId').hide();
+					//$('#roleContainer').removeClass('col-md-6').addClass('col-md-12');
+				}
+			});
+		});
+	</script>
+}
