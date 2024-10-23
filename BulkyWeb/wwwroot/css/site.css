@@ -121,3 +121,59 @@ body {
     opacity: 1; /* Make the button visible on hover */
 }
 
+
+/*User dropdown*/
+
+.user-circle {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    background-color: #007bff; /* Customize the color */
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Improved dropdown styling */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    margin-top: 5px;
+    right: 0; /* Align to the right */
+    min-width: 160px;
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+/* Improved dropdown item styling */
+.dropdown-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+    /* Hover effect for dropdown items */
+    .dropdown-item:hover {
+        background-color: #f0f0f0;
+    }
+
+/* Show dropdown when it has the 'show' class */
+.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
