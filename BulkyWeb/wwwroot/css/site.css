@@ -177,3 +177,73 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
+.carousel-full-width {
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+.navbar-full{
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+
+.categories-navbar {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    margin-left: calc(50% - 50vw); /* Center it horizontally */
+    padding: 0;
+    z-index: 10;
+    background-color: #6dcdc5;
+}
+
+
+.sticky-nav {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 0;
+    z-index: 10; /* Keeps it on top when scrolling */
+    padding: 0;
+    background-color: #6dcdc5; /* Keeps consistent background color */
+}
+
+
+/*Choosen navbar categories visibility  */
+
+.navbar-nav .nav-link {
+    transition: color 0.3s; /* Smooth transition for color changes */
+}
+
+    /* Change text color to light gray on hover, unless it's the active link */
+    .navbar-nav .nav-link:hover {
+        color: #d3d3d3 !important; /* Change text color to light gray on hover */
+    }
+
+    /* Keep the active link white, even on hover */
+    .navbar-nav .nav-link.text-white {
+        color: white !important; /* Keep selected link white */
+    }
+
+    /* Default Bootstrap dark color for links */
+    .navbar-nav .nav-link.text-dark {
+        color: #212529; /* Default dark color for links */
+    }
+
+body {
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+}
+
+.full-width-banner {
+    width: 100%;
+    height: auto; /* Adjusts height proportionally */
+    border-radius: 10px;
+
+}

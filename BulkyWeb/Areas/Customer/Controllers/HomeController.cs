@@ -1,5 +1,6 @@
 using Bulky.DataAccess.Repository.IRepository;
 using Bulky.Models;
+using Bulky.Models.ViewModels;
 using Bulky.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -42,6 +43,25 @@ namespace BulkyWeb.Areas.Customer.Controllers
 		   
 			return View(cart);
 		}
+
+		public IActionResult ActionCategory(int id)
+		{
+			IEnumerable<Product> productList = _unitOfWork.Product.GetAll(u => u.CategoryId == id, includeProperties: "Category,ProductImages");
+			return View(productList);
+		}
+
+		public IActionResult HistoryCategory(int id)
+		{
+			IEnumerable<Product> productList = _unitOfWork.Product.GetAll(u => u.CategoryId == id, includeProperties: "Category,ProductImages");
+			return View(productList);
+		}
+
+		public IActionResult SciFiCategory(int id)
+		{
+			IEnumerable<Product> productList = _unitOfWork.Product.GetAll(u => u.CategoryId == id, includeProperties: "Category,ProductImages");
+			return View(productList);
+		}
+
 
 		[HttpPost]
 		[Authorize]
