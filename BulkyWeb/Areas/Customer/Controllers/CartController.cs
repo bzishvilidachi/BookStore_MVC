@@ -211,7 +211,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
 			{
 				
 				HttpContext.Session.SetInt32(SD.SessionCart,
-			   _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cartFromDb.ApplicationUserId).Count());
+			   _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cartFromDb.ApplicationUserId).Count()-1);
 
 				_unitOfWork.ShoppingCart.Remove(cartFromDb);
 			}

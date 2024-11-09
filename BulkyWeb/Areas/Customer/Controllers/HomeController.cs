@@ -110,5 +110,46 @@ namespace BulkyWeb.Areas.Customer.Controllers
 		{
 			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 		}
+
+		
+
+		public IActionResult AddToCart(int productId, int count)
+		{
+			var claimsIdentity = (ClaimsIdentity)User.Identity;
+			var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+			// Create a new ShoppingCart object
+			ShoppingCart shoppingCart = new ShoppingCart
+			{
+				ApplicationUserId = userId,
+				ProductId = productId,
+				Count = count // Use the value from the form submission
+			};
+
+			// Check if the item already exists in the cart
+			ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId && u.ProductId == productId);
+
+			if (cartFromDb != null)
+			{
+				// Update existing item count
+				cartFromDb.Count += shoppingCart.Count;
+				_unitOfWork.ShoppingCart.Update(cartFromDb);
+				_unitOfWork.Save();
+			}
+			else
+			{
+				// Add new item to cart
+				_unitOfWork.ShoppingCart.Add(shoppingCart);
+				_unitOfWork.Save();
+
+				// Update session cart count
+				HttpContext.Session.SetInt32(SD.SessionCart,
+					_unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
+			}
+
+			TempData["success"] = "Cart updated successfully";
+			return RedirectToAction("Index");
+		}
+
 	}
 }

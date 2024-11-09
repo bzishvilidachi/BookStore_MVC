@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Product>
+﻿@using System.Security.Claims
+
+@model IEnumerable<Product>
 
 <div class="poster container mt-0 ">
 	<!-- Categories Navbar -->
@@ -6,17 +8,15 @@
 		<div class="container-fluid sticky-nav justify-content-center">
 			<ul class="navbar-nav">
 				<li class="nav-item">
-					<a class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "ActionCategory" ? "text-white" : "text-dark")" asp-controller="Home" asp-action="ActionCategory" asp-route-id="1">Action</a>
+					<a class="nav-link category @(ViewContext.RouteData.Values["action"].ToString() == "ActionCategory" ? "text-white" : "text-dark")" asp-controller="Home" asp-action="ActionCategory" asp-route-id="1">Action</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "SciFiCategory" ? "text-white" : "text-dark")" asp-controller="Home" asp-action="SciFiCategory" asp-route-id="2">Sci-Fi</a>
+					<a class="nav-link  @(ViewContext.RouteData.Values["action"].ToString() == "SciFiCategory" ? "text-white" : "text-dark")" asp-controller="Home" asp-action="SciFiCategory" asp-route-id="2">Sci-Fi</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link @(ViewContext.RouteData.Values["action"].ToString() == "HistoryCategory" ? "text-white" : "text-dark")" asp-controller="Home" asp-action="HistoryCategory" asp-route-id="3">History</a>
+					<a class="nav-link category @(ViewContext.RouteData.Values["action"].ToString() == "HistoryCategory" ? "text-white" : "text-dark")" asp-controller="Home" asp-action="HistoryCategory" asp-route-id="3">History</a>
 				</li>
 			</ul>
-
-
 		</div>
 	</nav>
 
@@ -62,46 +62,89 @@
 	<!-- Carousel Poster Section End -->
 	<!-- Header Section -->
 	<div class="row pb-5">
-		<div class="col-12 text-center">
-			<h1 class="display-4 text-primary">Action Section</h1>
-			<p class="lead text-secondary">"Life is either a daring adventure or nothing at all." – Helen Keller</p>
-		</div>
 	</div>
 
 	<!-- Featured Products Section -->
 	<div class="row pb-3">
 		<div class="col-12 text-center mb-4">
-			<h2 class="h3 text-dark">Featured Books</h2>
-			<p class="text-muted">Handpicked collection just for you.</p>
+			<h2 class="h3 text-dark">"Bravery is not a lack of fear, but action in the face of fear." </h2>
+			<p class="text-muted">— Mark Messier.</p>
 		</div>
 	</div>
 
 	<div class="row g-4">
-		@foreach (var product in Model)
-		{
-			<div class="col-lg-3 col-md-4 col-sm-6 d-flex justify-content-center">
-				<div class="card shadow-lg rounded overflow-hidden" style="width: 18rem;">
-					@if (product.ProductImages != null && product.ProductImages.Count() > 0)
-					{
-						<img src="@product.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top" style="height: 250px; object-fit: cover;" />
-					}
-					else
-					{
-						<img src="http://placehold.co/500x600/png" class="card-img-top" style="height: 250px; object-fit: cover;" />
-					}
 
-					<div class="card-body text-center">
-						<h5 class="card-title text-dark opacity-75 text-uppercase">@product.Title</h5>
-						<p class="card-subtitle mb-2 text-warning">By <b>@product.Author</b></p>
-						<div class="card-text">
-							<p class="text-muted text-decoration-line-through">List Price: @product.ListPrice.ToString("c")</p>
-							<p class="text-dark h5">Price: @product.Price100.ToString("c")</p>
+		<h2 class="title">Action</h2>
+
+		<div class="row g-4">
+			@foreach (var product in Model)
+			{
+				<div class="col-lg-3 col-md-3 col-sm-4 d-flex justify-content-center">
+					<div class="image-container position-relative" style="width: 100%;">
+						<a asp-action="Details" asp-route-id="@product.Id" style="display: block;">
+							@if (product.ProductImages != null && product.ProductImages.Count() > 0)
+							{
+								<img src="@product.ProductImages.FirstOrDefault().ImageUrl" class="card-img-top  rounded overflow-hidden" style="height: 250px; width: 100%; object-fit: cover;" />
+							}
+							else
+							{
+								<img src="http://placehold.co/500x600/png" class="card-img-top  rounded overflow-hidden" style="height: 250px; width: 100%; object-fit: cover;" />
+							}
+						</a>
+
+						<div class="card-body text-center mt-0 regular-details">
+							<div class="overplay-title">
+								<h5 class="card-title text-dark opacity-75 text-uppercase truncate">@product.Title</h5>
+							</div>
+
+							<p class="card-subtitle mb-1 text-warning">By <b>@product.Author</b></p>
+							<div class="card-text">
+								<p class="text-muted text-decoration-line-through">List Price: @product.ListPrice.ToString("c")</p>
+								<p class="text-dark h5">Price: @product.Price100.ToString("c")</p>
+							</div>
+
 						</div>
-						<a asp-action="Details" asp-route-id="@product.Id" class="btn btn-outline-primary mt-2 rounded-pill px-4">View Details</a>
+
+
+						<div class="overlay">
+							<div class="text w-100">
+								<a asp-action="Details" asp-route-id="@product.Id" class="text-dark text-uppercase h5 d-block" style="text-decoration: none;">@product.Title</a>
+								<p class="card-subtitle author mb-2 text-warning">By <b>@product.Author</b></p>
+
+								@* <p class="text-muted">List Price: @product.ListPrice.ToString("c")</p> *@
+								<p class="text-danger h5">Price: @product.Price100.ToString("c")</p>
+								<form asp-controller="Home" asp-action="AddToCart" asp-controller="Cart" method="post">
+									<input type="hidden" name="userId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
+									<input type="hidden" name="productId" value="@product.Id" />
+									<form asp-action="AddToCart" method="post">
+										<input type="hidden" name="ProductId" value="@product.Id" />
+										<input type="hidden" name="count" value="1" />
+										<button type="submit" class="slim-button btn btn-outline-primary mt-4 bg-gradient  w-50 py-2 text-uppercase fw-semibold  rounded-3">
+											Add to Cart
+										</button>
+									</form>
+
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		}
+			}
+		</div>
+
+
+
+
+
+	</div>
+	<br />
+	<br />
+
+
+	<div style="margin: 0; padding: 0;">
+		<a href="" title="Main page - 1">
+			<img src="~/images/banner_65cf618f58a33.jpg" alt="Main page - 1" class="full-width-banner">
+		</a>
 	</div>
 
 	<!-- Call to Action Section -->
@@ -115,7 +158,5 @@
 
 @section Scripts {
 	<script src="~/js/product.js"></script>
-
-
 
 }

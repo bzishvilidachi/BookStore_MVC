@@ -16,7 +16,7 @@ namespace Bulky.Models
 		
 		public int Id { get; set; }
 		[Required]
-		[MaxLength(20)]
+		[MaxLength(40)]
 		[DisplayName("Category Name")]
 		public string Title { get; set; }
 		public string Description { get; set; }
@@ -50,9 +50,10 @@ namespace Bulky.Models
 		[ForeignKey("CategoryId")]
 		[ValidateNever]
 		public Category Category { get; set; }
-        [ValidateNever]
-        public List<ProductImage> ProductImages { get; set; }
+		[ValidateNever]
+		public List<ProductImage> ProductImages { get; set; }
 
 
-    }
+		public DateTime AddDate { get; set; } = DateTime.Now;
+	}
 }

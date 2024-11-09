@@ -18,7 +18,8 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+   
 }
 .dropdown-menu {
     background-color: #f8f9fa; 
@@ -88,38 +89,38 @@ body {
         transition-delay: 0.2s; 
     }
 
-.image-container:hover img {
+/*.image-container:hover img {
     filter: blur(1px);
-}
+}*/
 
 
 
-.product-card {
-    transition: transform 0.3s ease; /* Smooth transition for the entire card */
-    position: relative; /* Necessary for positioning child elements */
-}
+/*.product-card {
+    transition: transform 0.3s ease;*/ /* Smooth transition for the entire card */
+    /*position: relative;*/ /* Necessary for positioning child elements */
+/*}
 
 .product-card:hover {
-    transform: translateY(-10px); /* Lift the entire card */
-}
+    transform: translateY(-10px);*/ /* Lift the entire card */
+/*}
 
 .card-body {
-    transition: transform 0.3s ease; /* Smooth transition for card body */
-}
+    transition: transform 0.3s ease;*/ /* Smooth transition for card body */
+/*}
 
 .product-card:hover .card-body {
-    transform: translateY(-20px); /* Move the entire card body up */
-}
+    transform: translateY(-20px);*/ /* Move the entire card body up */
+/*}
 
 .view-details {
-    transition: opacity 0.3s ease; /* Smooth transition for visibility */
-    opacity: 0; /* Initially hidden */
-    margin-top: 10px; /* Ensures space between text and button */
-}
+    transition: opacity 0.3s ease;*/ /* Smooth transition for visibility */
+    /*opacity: 0;*/ /* Initially hidden */
+    /*margin-top: 10px;*/ /* Ensures space between text and button */
+/*}
 
 .product-card:hover .view-details {
-    opacity: 1; /* Make the button visible on hover */
-}
+    opacity: 1;*/ /* Make the button visible on hover */
+/*}*/
 
 
 /*User dropdown*/
@@ -202,7 +203,7 @@ body {
     margin-left: calc(50% - 50vw); /* Center it horizontally */
     padding: 0;
     z-index: 10;
-    background-color: #6dcdc5;
+    background-color: #c2eee6;
 }
 
 
@@ -212,24 +213,24 @@ body {
     top: 0;
     z-index: 10; /* Keeps it on top when scrolling */
     padding: 0;
-    background-color: #6dcdc5; /* Keeps consistent background color */
+    background-color: #c2eee6; /* Keeps consistent background color */
 }
 
 
 /*Choosen navbar categories visibility  */
 
-.navbar-nav .nav-link {
+.navbar .navbar-nav .nav-link {
     transition: color 0.3s; /* Smooth transition for color changes */
 }
 
     /* Change text color to light gray on hover, unless it's the active link */
-    .navbar-nav .nav-link:hover {
-        color: #d3d3d3 !important; /* Change text color to light gray on hover */
+    .poster .navbar-nav .nav-link:hover {
+        color: #42bba4 !important; /* Change text color to light gray on hover */
     }
 
     /* Keep the active link white, even on hover */
     .navbar-nav .nav-link.text-white {
-        color: white !important; /* Keep selected link white */
+        color: #00a586 !important; /* Keep selected link white */
     }
 
     /* Default Bootstrap dark color for links */
@@ -246,4 +247,264 @@ body {
     height: auto; /* Adjusts height proportionally */
     border-radius: 10px;
 
+}
+
+.title {
+    font-size: 2rem; /* Adjust font size as needed */
+    font-weight: bold;
+    position: relative;
+    color: #333; /* Text color */
+    text-align: left; /* Center text */
+}
+
+    .title::after {
+        content: "";
+        display: block;
+        width:205px; /* Adjust width as needed */
+        height: 4px; /* Adjust thickness */
+        background: linear-gradient(90deg, #c2eee6, black);
+        bottom: -8px; /* Space between text and underline */
+        border-radius: 2px; /* Adds rounded edges */
+    }
+
+
+/* General Card Styles */
+.image-container {
+    height: 80%; /* Make the image container take full height of the card */
+    border-radius: 5px; /* Rounded corners for the container */
+    overflow: hidden; /* Prevent overflow from rounded corners */
+   /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);*/  /*Shadow for depth*/ 
+    transition: transform 0.3s ease; /* Smooth transition on hover */
+    margin-bottom: 1rem; /* Space below each card */
+}
+
+    .image-container:hover {
+        transform: scale(1.04);  /*Scale up on hover*/ 
+    }
+
+
+    /* Image Styles */
+.card-img-top {
+    height: 270px; /* Fixed height for images */
+    width: 100%; /* Full width */
+    aspect-ratio: 2 / 3;
+    object-fit: cover; /* Maintain aspect ratio and cover */
+    border-radius: 10px 10px 0 0; /* Rounded corners on the top */
+}
+
+    /* Card Body Styles */
+.product-card-body {
+    background-color: #ffffff; /* White background for the card body */
+    border-radius: 0 0 10px 10px; /* Rounded corners at the bottom */
+    padding: 1.5rem; /* Padding inside the card body */
+    text-align: center; /* Center align text */
+    min-height: 200px;
+    max-height: 244px;
+}
+
+    /* Title and Subtitle Styles */
+    .card-title {
+        font-weight: bold; /* Bold title */
+        font-size: 1.2rem; /* Title font size */
+        margin-bottom: 0.5rem; /*Space below title*/
+        
+    }
+
+    .card-subtitle {
+        font-size: 1rem; /* Subtitle font size */
+        margin-bottom: 0.5rem; /* Space below subtitle */
+    }
+
+    /* Price Styles */
+    .card-text {
+        margin: 0.5rem 0; /* Space around text elements */
+       
+    }
+
+    /* Text Styles */
+    .text-muted {
+        color: #6c757d; /* Muted text color */
+    }
+
+    .text-warning {
+        color: #ffc107; /* Warning color for subtitles */
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        .col-sm-4 {
+            flex: 0 0 100%; /* Stack items on small screens */
+            max-width: 100%;
+        }
+    }
+
+    @media (min-width: 769px) {
+        .col-md-3 {
+            flex: 0 0 20%; /* 5 items per row for medium and larger screens */
+            max-width: 20%;
+        }
+    }
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap */
+    justify-content: space-between; /* Space between items */
+}
+
+.col-md-3 {
+    flex: 0 0 20%; /* 5 items per row for large screens */
+    max-width: 20%;
+    margin-bottom: 20px; /* Space below each card */
+}
+
+/* Media query for screens below 1000px */
+@media (max-width: 1000px) {
+    .col-md-3 {
+        flex: 0 0 33.33%; /* 3 items per row */
+        max-width: 33.33%;
+    }
+}
+
+/* Optional: Adjust for even smaller screens */
+@media (max-width: 768px) {
+    .col-md-3 {
+        flex: 0 0 50%; /* 2 items per row on smaller screens */
+        max-width: 50%;
+    }
+}
+
+/* Further adjustment for very small screens */
+@media (max-width: 480px) {
+    .col-md-3 {
+        flex: 0 0 100%; /* 1 item per row on very small screens */
+        max-width: 100%;
+    }
+}
+
+/* Style adjustments for the images to fit better */
+.card-img-top {
+    width: 100%; /* Make the image take full width of the card */
+    height: auto; /* Maintain the aspect ratio */
+   
+    object-fit: cover; /* Cover the entire area, cropping as necessary */
+    max-height: 300px; /* Set a max height if needed to maintain dimensions */
+}
+
+
+    /* Max Width for Large Screens */
+    @media (min-width: 1200px) {
+        .image-container {
+            max-width: 250px; /* Maintain max width for larger screens */
+            margin: auto; /* Center the card */
+        }
+    }
+@media (max-width: 1200px) {
+    .image-container {
+        max-width: 200px; /* Maintain max width for larger screens */
+        margin: auto; /* Center the card */
+    }
+}
+
+
+    /* Container for image and overlay */
+    .image-container {
+        position: relative;
+        height: auto;
+        overflow: hidden;
+    }
+
+    /* Image styling */
+    .card-img-top {
+        width: 50%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    /* Regular Details Section */
+    .regular-details {
+        transition: opacity 0.5s ease;
+    }
+
+    /* Overlay styling */
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: white; /* Dark overlay background */
+        height: 0;
+        transition: height 0.5s ease;
+        width: 100%;
+        overflow: hidden;
+        z-index: 1; /* Make sure it covers regular details */
+        opacity: 0; /* Hidden initially */
+    }
+
+        /* Overlay content styling */
+        .overlay .text {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 20;
+        }
+
+    /* Hover effects */
+    .image-container:hover .overlay {
+        height: 250px; /* Expand to halfway up the image */
+        opacity: 1; /* Make overlay visible */
+    }
+
+    .image-container:hover .regular-details {
+        opacity: 0; /* Hide regular details */
+    }
+
+    .image-container {
+        box-shadow: none;
+    }
+
+    .poster {
+        box-shadow: none;
+    }
+
+    @media (max-width: 576px) {
+        .poster .navbar {
+            display: none;
+        }
+    }
+
+    @media (max-width: 1199px) {
+        .overplay {
+            height: 300px;
+        }
+    }
+
+    .slim-button {
+        padding: 4px 8px; /* Reduced padding */
+        font-size: 0.9rem; /* Smaller font size */
+        border-radius: 4px; /* Smaller border radius */
+    }
+
+    @media (max-width: 1199px) {
+
+
+        .author {
+            display: none;
+        }
+    }
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block; /* or inline-block */
+    max-width: 100%; /* Adjust this to control the width of the text container */
+}
+
+.spacing-div {
+    padding-top: 20px; /* Adjust the value as needed */
+    padding-bottom: 20px; /* Adjust the value as needed */
+    margin: 24px 0px 8px;
 }
