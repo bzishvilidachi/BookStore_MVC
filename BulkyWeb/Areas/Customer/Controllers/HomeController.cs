@@ -62,6 +62,18 @@ namespace BulkyWeb.Areas.Customer.Controllers
 			return View(productList);
 		}
 
+		public IActionResult ViewAll(int id)
+		{
+			var categoryFromDb = _unitOfWork.Product.GetAll(u => u.CategoryId == id, includeProperties: "Category,ProductImages");
+			return View(categoryFromDb);
+		}
+
+
+		public IActionResult NewlyAdded()
+		{
+			var productsFromDb = _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages").OrderByDescending(p => p.AddDate).Take(15).ToList(); 
+			return View(productsFromDb);
+		}
 
 		[HttpPost]
 		[Authorize]

@@ -78,14 +78,19 @@
 	</div>
 
 	
+		@{
+			var lowestPrice = Model.OrderBy(p => p.Price100).Take(5).ToList();
+		}
 
-		<h2 class="title spacing-div">Bestsellers</h2>
+
+
+			<h2 class="title">Bestsellers</h2>
+		
 
 		<div class="row g-5">
-			@foreach (var product in Model)
+		@foreach (var product in lowestPrice)
 			{
-				@if (product.CategoryId == 2)
-				{
+				
 					<div class="col-lg-3 col-md-3 col-sm-4 d-flex justify-content-center">
 						<div class="image-container position-relative" style="width: 100%;">
 							<a asp-action="Details" asp-route-id="@product.Id" style="display: block;">
@@ -135,25 +140,21 @@
 							</div>
 						</div>
 					</div>
-				}
+				
 			}
 			</div>
 
-
-			<h2 class="title spacing-div">Newly Added</h2>
-
-
-			@{
-				var latestProducts = new List<Product>();
-				var products = Model.OrderByDescending(p => p.AddDate).ToList();
-
-				for (int i = 0; i < Math.Min(5, products.Count); i++)
-				{
-					latestProducts.Add(products[i]);
-				}
-			}
+		@{
+			var latestProducts = Model.OrderByDescending(p => p.AddDate).Take(5).ToList();
+		}
 
 
+		<div class="d-flex justify-content-between align-items-start spacing-div">
+			<h2 class="title">New</h2>
+		<a asp-action="NewlyAdded"  class="btn btn-outline-primary rounded-4">See More</a>
+		</div>
+
+		
 		<div class="row g-5">
 			@foreach (var product in latestProducts)
 			{
@@ -220,16 +221,20 @@
 	</div>
 
 
+	@{
+		var childrens = Model.OrderByDescending(p => p.CategoryId == 7).Take(5).ToList();
+	}
 
-
-	<h2 class="title spacing-div">Children's</h2>
+	<div class="d-flex justify-content-between align-items-start spacing-div">
+		<h2 class="title">Children's</h2>
+		<a asp-action="ViewAll" asp-route-id="7" class="btn btn-outline-primary rounded-4">See More</a>
+	</div>
 
 	<div class="row g-5">
 
-		@foreach (var product in Model)
+		@foreach (var product in childrens)
 		{
-			@if (product.CategoryId == 7)
-			{
+			
 				<div class="col-lg-3 col-md-3 col-sm-4 d-flex justify-content-center">
 					<div class="image-container position-relative" style="width: 100%;">
 						<a asp-action="Details" asp-route-id="@product.Id" style="display: block;">
@@ -280,23 +285,24 @@
 						</div>
 					</div>
 				</div>
-			}
 		}
 	</div>
 
 
 
+		@{
+			var scifies = Model.OrderByDescending(p => p.CategoryId == 2).Take(5).ToList();
+		}
 
-
-		<h2 class="title spacing-div">Sci-Fi</h2>
-
+		<div class="d-flex justify-content-between align-items-start spacing-div">
+			<h2 class="title">Sci-Fi</h2>
+		<a asp-action="ViewAll" asp-route-id="2" class="btn btn-outline-primary rounded-4">See More</a>
+		</div>
 
 		<div class="row g-5">
 
-			@foreach (var product in Model)
+			@foreach (var product in scifies)
 			{
-				@if (product.CategoryId == 2)
-				{
 					<div class="col-lg-3 col-md-3 col-sm-4 d-flex justify-content-center">
 						<div class="image-container position-relative" style="width: 100%;">
 							<a asp-action="Details" asp-route-id="@product.Id" style="display: block;">
@@ -345,7 +351,6 @@
 						</div>
 					</div>
 				}
-			}
 			</div>
 
 
@@ -370,4 +375,3 @@
 			<script src="~/js/product.js"></script>
 
 		}
-}
