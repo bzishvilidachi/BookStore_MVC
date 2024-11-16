@@ -6,15 +6,18 @@
 	<!-- Categories Navbar -->
 	<nav class="navbar navbar-expand-sm bg-secondary categories-navbar text-dark ">
 		<div class="container-fluid sticky-nav justify-content-center">
-			<ul class="navbar-nav">
+			<ul class="navbar-nav menu">
 				<li class="nav-item">
-					<a class="nav-link category @(ViewContext.RouteData.Values["action"].ToString() == "ActionCategory" ? "text-white" : "text-dark")" asp-controller="Home" asp-action="ActionCategory" asp-route-id="1">Action</a>
+					<a class="menu-1 nav-link category @(ViewContext.RouteData.Values["action"].ToString() == "ActionCategory" ? "active" : "")"
+					   asp-controller="Home" asp-action="ActionCategory" asp-route-id="1">Action</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link  @(ViewContext.RouteData.Values["action"].ToString() == "SciFiCategory" ? "text-white" : "text-dark")" asp-controller="Home" asp-action="SciFiCategory" asp-route-id="2">Sci-Fi</a>
+					<a class="menu-2 nav-link @(ViewContext.RouteData.Values["action"].ToString() == "SciFiCategory" ? "active" : "")"
+					   asp-controller="Home" asp-action="SciFiCategory" asp-route-id="2">Sci-Fi</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link category @(ViewContext.RouteData.Values["action"].ToString() == "HistoryCategory" ? "text-white" : "text-dark")" asp-controller="Home" asp-action="HistoryCategory" asp-route-id="3">History</a>
+					<a class="menu-3 nav-link category @(ViewContext.RouteData.Values["action"].ToString() == "HistoryCategory" ? "active" : "")"
+					   asp-controller="Home" asp-action="HistoryCategory" asp-route-id="3">History</a>
 				</li>
 			</ul>
 		</div>

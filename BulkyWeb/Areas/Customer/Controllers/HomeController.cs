@@ -127,6 +127,16 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
 		public IActionResult AddToCart(int productId, int count)
 		{
+			if (!User.Identity.IsAuthenticated)
+			{
+				// Step 2: Redirect to the login page if not authenticated
+				return RedirectToPage("/Account/Login", new
+				{
+					area = "Identity",
+					ReturnUrl = Url.Action("AddToCart", "YourControllerName", new { productId, count })
+				});
+			}
+
 			var claimsIdentity = (ClaimsIdentity)User.Identity;
 			var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
 

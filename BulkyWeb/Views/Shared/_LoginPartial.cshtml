@@ -5,26 +5,27 @@
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
-        var email = UserManager.GetUserName(User);
-        var initials = email?.Substring(0, 1).ToUpper() ?? "";
-
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <div class="user-circle" title="@email">
-                    @initials
-                </div>
+            <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+           
+                <i class="bi bi-person-circle me-1"></i> Account
             </a>
-            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3" aria-labelledby="userDropdown">
+            <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 rounded-3" aria-labelledby="profileDropdown">
                 <li>
                     <a class="dropdown-item d-flex align-items-center" asp-area="Identity" asp-page="/Account/Manage/Index">
                         <i class="bi bi-person me-2"></i> Profile
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <i class="bi bi-card-list me-2"></i> Orders
                     </a>
                 </li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
                     <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                         <button type="submit" class="dropdown-item d-flex align-items-center">
-                            <i class="bi bi-box-arrow-left me-2"></i> Logout
+                            <i class="bi bi-box-arrow-left me-2"></i> Sign Out
                         </button>
                     </form>
                 </li>
@@ -34,10 +35,10 @@
     else
     {
         <li class="nav-item">
-            <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+            <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Sign Up</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+            <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Sign In</a>
         </li>
     }
 </ul>

@@ -16,14 +16,19 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Oswald:wght@200..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik+Bubbles&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="//cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Play&display=swap" rel="stylesheet">
+
+
 </head>
 <body>
 	<header>
 		<!-- Main Navbar -->
-		<nav class="navbar navbar-expand-sm navbar-full navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-0">
+		@* <nav class="navbar navbar-expand-sm navbar-full navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-0">
 			<div class="container-fluid">
 				<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
-					<img src="/images/book.png" style="width:70px" />
+					<img src="/images/BookIcon.png" style="width:70px" />
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
 						aria-expanded="false" aria-label="Toggle navigation">
@@ -34,9 +39,7 @@
 						<li class="nav-item">
 							<a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a>
-						</li>
+						
 						@if (User.IsInRole(SD.Role_Admin))
 						{
 							<li class="nav-item dropdown">
@@ -75,31 +78,148 @@
 									</li>
 								</ul>
 							</li>
-						}
+						} 
+						
+
 						<li class="nav-item">
 							<a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
 								@await Component.InvokeAsync("ShoppingCart")
 							</a>
 						</li>
+						
 					</ul>
+					@* <form asp-controller="Product" asp-action="Search" method="get" class="d-flex">
+						<input type="text" name="query" class="form-control me-2" placeholder="Search products by name or author" />
+						<button type="submit" class="btn btn-outline-light">Search</button>
+					</form> 
+					<partial name="_LoginPartial" />
+				</div>
+			</div>
+		</nav> *@
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+			<div class="container-fluid">
+				 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+					<img src="/images/BookIcon.png" alt="Logo" style="width: 50px;">
+					<span class="ms-2 fw-bold">Bookshop</span>
+				</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<form class="d-flex ms-3 me-auto">
+						<input class="form-control me-2" type="search" placeholder="Search books, authors..." aria-label="Search">
+						<button class="btn btn-outline-secondary" type="submit">
+							<i class="bi bi-search"></i>
+						</button>
+					</form>
+				
+						<ul class="navbar-nav">
+						@if (User.IsInRole(SD.Role_Admin))
+						{
+							<li class="nav-item" style="margin-top: 12px;">
+								<a class="nav-link bi bi-house-door-fill me-1" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+							</li>
+
+							<li class="nav-item" style="margin-top: 12px;">
+								<a class="nav-link bi bi-wrench" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a>
+							</li>
+
+							<li class="nav-item dropdown" style="margin-top: 12px;">
+								<a class="nav-link content-management dropdown-toggle bi bi-gear-fill" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Content Management
+								</a>
+								<ul class="dropdown-menu shadow-lg border-0 rounded-3 p-3">
+									<li class="nav-item">
+										<a class="dropdown-item d-flex align-items-center" asp-area="Admin" asp-controller="Category" asp-action="Index">
+											<i class="bi bi-tags me-2"></i> Category
+										</a>
+									</li>
+									<li><hr class="dropdown-divider"></li>
+									<li class="nav-item">
+										<a class="dropdown-item d-flex align-items-center" asp-area="Admin" asp-controller="Product" asp-action="Index">
+											<i class="bi bi-box me-2"></i> Product
+										</a>
+									</li>
+									<li><hr class="dropdown-divider"></li>
+									<li class="nav-item">
+										<a class="dropdown-item d-flex align-items-center" asp-area="Admin" asp-controller="Company" asp-action="Index">
+											<i class="bi bi-building me-2"></i> Company
+										</a>
+									</li>
+									<li><hr class="dropdown-divider"></li>
+									<li class="nav-item">
+										<a class="dropdown-item d-flex align-items-center" asp-area="Identity" asp-page="/Account/Register">
+											<i class="bi bi-person-plus me-2"></i>Create user
+										</a>
+									</li>
+									<li><hr class="dropdown-divider"></li>
+									<li class="nav-item">
+										<a class="dropdown-item d-flex align-items-center" asp-area="Admin" asp-controller="User" asp-action="Index">
+											<i class="bi bi-people me-2"></i> Manage user
+										</a>
+									</li>
+								</ul>
+							</li>
+								}
+					@* 	<li class="nav-item" style="margin-top: 12px;">
+							<a class="nav-link" href="#">
+								<i class="bi bi-heart-fill me-1"></i>
+							</a>
+						</li> *@
+
+						<li class="nav-item">
+							<a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+								@await Component.InvokeAsync("ShoppingCart")
+							</a>
+						</li>
+						</ul>
+				
+				
+
 					<partial name="_LoginPartial" />
 				</div>
 			</div>
 		</nav>
 	</header>
+	<div class="content-wrapper">
+		<div class="container">
+			<main role="main" class="pb-3">
+				<partial name="_Notification" />
+				@RenderBody()
+			</main>
+		</div>
 
-	<div class="container">
-		<main role="main" class="pb-3">
-			<partial name="_Notification" />
-			@RenderBody()
-		</main>
+	
+	   <footer class="border-top footer">
+				<video class="footer_video" muted="" loop="" autoplay src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450" type="video/mp4">
+				</video>
+				<div class="footer">
+					<div class="social-icons">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-instagram"></i></a>
+						<a href="#"><i class="fa fa-youtube"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+					</div>
+
+
+					<div class="row">
+						<ul>
+							<li><a href="#">Contact us</a></li>
+							<li><a href="#">Our Services</a></li>
+							<li><a href="#">Privacy Policy</a></li>
+							<li><a href="#">Terms & Conditions</a></li>
+							<li><a href="#">Career</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="container">
+					<div class="footer_copyright">
+						<p class="py-0 mb-0">&copy; 2022 The Afterlogo Company Inc.</p>
+					</div>
+		</footer>
 	</div>
 
-	<footer class="border-top footer bg-primary" >
-		<div class="text-center text-light">
-			Made with <i class="bi bi-heart-fill"></i>
-		</div>
-	</footer>
 	<script src="~/lib/jquery/dist/jquery.min.js"></script>
 	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/js/site.js" asp-append-version="true"></script>
@@ -108,7 +228,7 @@
 	<script src="https://cdn.tiny.cloud/1/gztdkpts8ykzkln70hkj7u19lbyvk20dsza3iz3dm6e5h5ir/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 	
 	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
+	
 
 	@await RenderSectionAsync("Scripts", required: false)
 </body>
