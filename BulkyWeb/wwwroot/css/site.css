@@ -208,9 +208,9 @@ body {
     .title::after {
         content: "";
         display: block;
-        width:100%; /* Adjust width as needed */
+        width: 100%; /* Adjust width as needed */
         height: 4px; /* Adjust thickness */
-        background: linear-gradient(90deg, #c2eee6, black);
+        background: linear-gradient(90deg, #675f60, #a86b66, #cc604d, #e6877b, #fbbcb4, #f9e2e1);
         bottom: -8px; /* Space between text and underline */
         border-radius: 2px; /* Adds rounded edges */
     }

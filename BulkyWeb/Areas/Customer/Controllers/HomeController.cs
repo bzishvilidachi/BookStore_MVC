@@ -90,6 +90,12 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
 			return View(results); // Ensure you have a SearchResults view to display results.
 		}
+
+		public IActionResult BrowseAll()
+		{
+			IEnumerable<Product> browseAll = _unitOfWork.Product.GetAll(includeProperties: "Category,ProductImages");
+			return View(browseAll);
+		}
 		[HttpPost]
 		[Authorize]
 		public IActionResult Details(ShoppingCart shoppingCart)
