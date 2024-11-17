@@ -5,6 +5,7 @@ using Bulky.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Security.Claims;
 
@@ -75,6 +76,20 @@ namespace BulkyWeb.Areas.Customer.Controllers
 			return View(productsFromDb);
 		}
 
+		public IActionResult Search(string query)
+		{
+			if (string.IsNullOrEmpty(query))
+			{
+				return View(new List<Product>()); // Return an empty list if no query is provided.
+			}
+			
+			// Search for books by title or author.
+			var results = _unitOfWork.Product
+				.GetAll(b => b.Title.Contains(query) || b.Author.Contains(query), includeProperties: "Category,ProductImages")
+				.ToList();
+
+			return View(results); // Ensure you have a SearchResults view to display results.
+		}
 		[HttpPost]
 		[Authorize]
 		public IActionResult Details(ShoppingCart shoppingCart)

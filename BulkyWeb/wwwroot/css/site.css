@@ -95,41 +95,7 @@ body {
         transition-delay: 0.2s; 
     }
 
-/*.image-container:hover img {
-    filter: blur(1px);
-}*/
 
-
-
-/*.product-card {
-    transition: transform 0.3s ease;*/ /* Smooth transition for the entire card */
-    /*position: relative;*/ /* Necessary for positioning child elements */
-/*}
-
-.product-card:hover {
-    transform: translateY(-10px);*/ /* Lift the entire card */
-/*}
-
-.card-body {
-    transition: transform 0.3s ease;*/ /* Smooth transition for card body */
-/*}
-
-.product-card:hover .card-body {
-    transform: translateY(-20px);*/ /* Move the entire card body up */
-/*}
-
-.view-details {
-    transition: opacity 0.3s ease;*/ /* Smooth transition for visibility */
-    /*opacity: 0;*/ /* Initially hidden */
-    /*margin-top: 10px;*/ /* Ensures space between text and button */
-/*}
-
-.product-card:hover .view-details {
-    opacity: 1;*/ /* Make the button visible on hover */
-/*}*/
-
-
-/*User dropdown*/
 
 .user-circle {
     display: inline-block;
@@ -222,31 +188,7 @@ body {
     background-color: #fff; /* Keeps consistent background color */
 }
 
-/*
-Choosen navbar categories visibility  
 
-.navbar .navbar-nav .nav-link {
-    transition: color 0.3s;  Smooth transition for color changes 
-}
-
-     Change text color to light gray on hover, unless it's the active link 
-    .poster .navbar-nav .nav-link:hover {
-        color: #42bba4 !important;  Change text color to light gray on hover 
-    }
-
-     Keep the active link white, even on hover 
-    .navbar-nav .nav-link.text-white {
-        color: #00a586 !important;  Keep selected link white 
-    }
-
-     Default Bootstrap dark color for links 
-    .navbar-nav .nav-link.text-dark {
-        color: #212529;  Default dark color for links 
-    }*/
-
-body {
-    overflow-x: hidden; /* Prevents horizontal scrolling */
-}
 
 .full-width-banner {
     width: 100%;
@@ -266,7 +208,7 @@ body {
     .title::after {
         content: "";
         display: block;
-        width:205px; /* Adjust width as needed */
+        width:100%; /* Adjust width as needed */
         height: 4px; /* Adjust thickness */
         background: linear-gradient(90deg, #c2eee6, black);
         bottom: -8px; /* Space between text and underline */
@@ -651,6 +593,8 @@ body {
 
 
 
+
+/*--------------------NAVBAR-------------------*/
 
 
 /* Base styles for the navbar */
